@@ -12,37 +12,37 @@ import android.widget.EditText;
 import net.glassstones.library.R;
 
 
-public class EditTextViewDrawableSize extends EditText {
+public class EditTextViewDrawableView extends EditText {
 
     private int mDrawableWidth;
     private int mDrawableHeight;
 
-    public EditTextViewDrawableSize(Context context) {
+    public EditTextViewDrawableView(Context context) {
         super(context);
         init(context, null, 0, 0);
     }
 
-    public EditTextViewDrawableSize(Context context, AttributeSet attrs) {
+    public EditTextViewDrawableView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs, 0, 0);
     }
 
-    public EditTextViewDrawableSize(Context context, AttributeSet attrs, int defStyleAttr) {
+    public EditTextViewDrawableView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs, defStyleAttr, 0);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public EditTextViewDrawableSize(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public EditTextViewDrawableView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(context, attrs, defStyleAttr, defStyleRes);
     }
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.EditTextViewDrawableSize, defStyleAttr, defStyleRes);
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.EditTextViewDrawableView, defStyleAttr, defStyleRes);
         try {
-            mDrawableWidth = array.getDimensionPixelSize(R.styleable.EditTextViewDrawableSize_compoundDrawableWidth, -1);
-            mDrawableHeight = array.getDimensionPixelSize(R.styleable.EditTextViewDrawableSize_compoundDrawableHeight, -1);
+            mDrawableWidth = array.getDimensionPixelSize(R.styleable.EditTextViewDrawableView_compoundDrawableWidth, -1);
+            mDrawableHeight = array.getDimensionPixelSize(R.styleable.EditTextViewDrawableView_compoundDrawableHeight, -1);
         } finally {
             array.recycle();
         }
