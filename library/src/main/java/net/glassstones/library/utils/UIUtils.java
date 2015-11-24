@@ -3,19 +3,57 @@ package net.glassstones.library.utils;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.Point;
 import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.view.Display;
 import android.view.WindowManager;
 
+import net.glassstones.library.R;
+
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class UIUtils {
     private static int screenWidth = 0;
     private static int screenHeight = 0;
+
+    public static int getToolbarHeight(Context context) {
+        final TypedArray styledAttributes = context.getTheme().obtainStyledAttributes(
+                new int[]{R.attr.actionBarSize});
+        int toolbarHeight = (int) styledAttributes.getDimension(0, 0);
+        styledAttributes.recycle();
+
+        return toolbarHeight;
+    }
+
+    /**
+     * @param context Context
+     * @param dimension Dimension
+     * @return Tab Height
+     */
+    public static int getTabsHeight(Context context, int dimension) {
+        return dimension == 0 ? (int) context.getResources().getDimension(R.dimen.tabsHeight) : dimension;
+    }
+
+    /**
+     * @param n Amount
+     * @param locale Locale
+     * @return Formatted String
+     */
+
+    public static String formatNumber(double n, Locale locale) {
+        if (locale == null) {
+            locale = new Locale("en", "NG");
+        }
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(locale);
+
+        return formatter.format(n);
+    }
 
     public static int dpToPx(int dp) {
         return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
@@ -109,9 +147,9 @@ public class UIUtils {
         return manager.getSimCountryIso().toUpperCase();
     }
 
-    public static String getTime(String string) {
+    public static String getTime(String string, Locale locale) {
         Date d = new Date(Integer.parseInt(string));
-        DateFormat format = new SimpleDateFormat("mm:ss");
+        DateFormat format = new SimpleDateFormat("mm:ss", locale);
 
         return format.format(d);
     }
