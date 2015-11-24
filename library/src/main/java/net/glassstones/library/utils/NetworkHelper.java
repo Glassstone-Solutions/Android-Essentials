@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-package net.glassstones.library.ui.utils;
+package net.glassstones.library.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
