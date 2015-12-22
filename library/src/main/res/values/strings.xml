@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Library</string>
+    <string name="font_name_fontawesome">fontawesome</string>
+    <string name="font_name_source_sans_pro">SourceSansPro</string>
 </resources>
