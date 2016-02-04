@@ -2,4 +2,8 @@
     <string name="app_name">Library</string>
     <string name="font_name_fontawesome">fontawesome</string>
     <string name="font_name_source_sans_pro">SourceSansPro</string>
+
+    <string name="avenir_next_lT_pro" translatable="false">AvenirNextLTPro</string>
+    <string name="avenir_next_lT_pro_medium_cn_thin" translatable="false">AvenirNextLTPro-UltLtCn</string>
+    <string name="avenir_next_lT_pro_medium_cn_thin_it" translatable="false">AvenirNextLTPro-UltLtCnIt</string>
 </resources>

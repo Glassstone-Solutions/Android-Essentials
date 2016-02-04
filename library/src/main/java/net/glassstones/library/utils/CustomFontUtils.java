@@ -8,8 +8,10 @@ import android.widget.TextView;
 
 import net.glassstones.library.R;
 
+
 /**
- * Created by Thompson on 28/11/2015.
+ * Created by norman on 3/8/15.
+ * Adapted for Markit.
  */
 public class CustomFontUtils {
 
@@ -18,46 +20,58 @@ public class CustomFontUtils {
     public static void applyCustomFont(TextView customFontTextView, Context context, AttributeSet attrs) {
         TypedArray attributeArray = context.obtainStyledAttributes(
                 attrs,
-                R.styleable.CustomFontTextView);
+                R.styleable.CustomTextView);
 
-        String fontName = attributeArray.getString(R.styleable.CustomFontTextView_font);
-        int textStyle = attrs.getAttributeIntValue(ANDROID_SCHEMA, "textStyle", 0);
+        String fontName = attributeArray.getString(R.styleable.CustomTextView_font);
 
+        // check if a special textStyle was used (e.g. extra bold)
+        int textStyle = attributeArray.getInt(R.styleable.CustomTextView_textStyle, 0);
+
+        // if nothing extra was used, fall back to regular android:textStyle parameter
+        if (textStyle == 0) {
+            textStyle = attrs.getAttributeIntValue(ANDROID_SCHEMA, "textStyle", Typeface.NORMAL);
+        }
 
         Typeface customFont = selectTypeface(context, fontName, textStyle);
         customFontTextView.setTypeface(customFont);
-
 
         attributeArray.recycle();
     }
 
     private static Typeface selectTypeface(Context context, String fontName, int textStyle) {
         if (fontName.contentEquals(context.getString(R.string.font_name_fontawesome))) {
-            return FontCache.getTypeface("fontawesome.ttf", context);
-        } else if (fontName.contentEquals(context.getString(R.string.font_name_source_sans_pro))) {
+            return FontCache.getTypeface("fonts/fontawesome.ttf", context);
+        }
+        else if (fontName.contentEquals(context.getString(R.string.avenir_next_lT_pro))) {
             /*
             information about the TextView textStyle:
             http://developer.android.com/reference/android/R.styleable.html#TextView_textStyle
             */
             switch (textStyle) {
-                case 1: // bold
-                    return FontCache.getTypeface("SourceSansPro-Bold.ttf", context);
+                case Typeface.BOLD: // bold
+                    return FontCache.getTypeface("fonts/"+"AvenirNextLTPro-Bold.otf", context);
 
+                case Typeface.ITALIC: // italic
+                    return FontCache.getTypeface("fonts/"+"AvenirNextLTPro-CnIt.otf", context);
 
-                case 2: // italic
-                    return FontCache.getTypeface("SourceSansPro-Italic.ttf", context);
+                case Typeface.BOLD_ITALIC: // bold italic
+                    return FontCache.getTypeface("fonts/"+"AvenirNextLTPro-BoldCnIt.otf", context);
 
+                case 10: // extra light, equals @integer/font_style_extra_light
+                    return FontCache.getTypeface("fonts/"+"AvenirNextLTPro-UltLtCn.otf", context);
 
-                case 0: // regular
+                case 11: // extra bold, equals @integer/font_style_extra_bold
+                    return FontCache.getTypeface("fonts/"+"AvenirNextLTPro-HeavyCn.otf", context);
+
+                case Typeface.NORMAL: // regular
                 default:
-                    return FontCache.getTypeface("SourceSansPro-Regular.ttf", context);
+                    return FontCache.getTypeface("fonts/"+"AvenirNextLTPro-MediumCn-Regular.otf", context);
             }
-        } else {
+        }
+        else {
             // no matching font found
             // return null so Android just uses the standard font (Roboto)
             return null;
         }
-
     }
-
 }
