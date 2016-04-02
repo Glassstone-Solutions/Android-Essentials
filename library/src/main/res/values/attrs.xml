@@ -5,7 +5,7 @@
         <attr name="compoundDrawableHeight" format="dimension"/>
     </declare-styleable>
     <declare-styleable name="CustomFontTextView">
-        <attr name="font" format="string"/>
+        <attr name="iFont" format="string"/>
     </declare-styleable>
     <declare-styleable name="CustomTextView">
         <attr name="font" format="string"/>
