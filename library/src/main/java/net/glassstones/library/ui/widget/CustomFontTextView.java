@@ -1,34 +1,38 @@
 package net.glassstones.library.ui.widget;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
 import net.glassstones.library.R;
 import net.glassstones.library.utils.FontCache;
 
-
+@TargetApi(Build.VERSION_CODES.CUPCAKE)
 public class CustomFontTextView extends TextView {
     public static final String ANDROID_SCHEMA = "http://schemas.android.com/apk/res/android";
 
     public CustomFontTextView(Context context) {
         super(context);
-
-        applyCustomFont(context, null);
+        if (!isInEditMode())
+            applyCustomFont(context, null);
     }
 
     public CustomFontTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        applyCustomFont(context, attrs);
+        if (!isInEditMode())
+            applyCustomFont(context, attrs);
     }
 
     public CustomFontTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
-        applyCustomFont(context, attrs);
+        if (!isInEditMode())
+            applyCustomFont(context, attrs);
     }
 
     private void applyCustomFont(Context context, AttributeSet attrs) {
